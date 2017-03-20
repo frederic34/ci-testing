@@ -1,5 +1,5 @@
 # ci-testing
-A repository for testing continuous ci with c#
+A repository for testing Continuous Integration with c#
 
 ## Build status
 | Platform | CI service | Status |
