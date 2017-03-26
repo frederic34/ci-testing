@@ -1,0 +1,11 @@
+environment:
+  github_auth_token:
+    secure: bF+cWQQ2804YPTJ/w4x1pzgU60HO4p6Vt5uukdLdPPVgSqQTvNIlEGWIPQ+Cw+6M
+before_build:
+  - nuget restore
+build_script:
+  - choco install "msbuild-sonarqube-runner" -y
+  - ps: if ($env:APPVEYOR_PULL_REQUEST_NUMBER) { MSBuild.SonarQube.Runner.exe begin /k:"ci-testing" /d:"sonar.host.url=https://sonar.fredericfrance.fr" /d:"sonar.login=cac120e139e7232bd4c80f8058fd88ef1f0812d7" /d:"sonar.analysis.mode=preview" /d:"sonar.github.pullRequest=$env:APPVEYOR_PULL_REQUEST_NUMBER" /d:"sonar.github.repository=frederic34/ci-testing" /d:"sonar.github.oauth=$env:github_auth_token" }
+  - ps: if (-Not $env:APPVEYOR_PULL_REQUEST_NUMBER) { MSBuild.SonarQube.Runner.exe begin /k:"ci-testing" /d:"sonar.host.url=https://sonar.fredericfrance.fr" /d:"sonar.login=cac120e139e7232bd4c80f8058fd88ef1f0812d7" }
+  - msbuild "ContinuousIntegration.sln"
+  - MSBuild.SonarQube.Runner.exe end /d:"sonar.login=cac120e139e7232bd4c80f8058fd88ef1f0812d7"
