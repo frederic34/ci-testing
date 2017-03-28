@@ -10,16 +10,6 @@ namespace ContinuousIntegration
 		public MainWindow()
 		{
 			InitializeComponent();
-			if (1==1)
-			{
-				if (2==2)
-				{
-					if (3==3)
-					{
-						System.Console.WriteLine("Hello World!");
-					}
-				}
-			}
 		}
 	}
 }
