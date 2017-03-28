@@ -1,7 +1,4 @@
-﻿using System;
-using ContinuousIntegration;
-
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTestContinuousIntegration
 {
